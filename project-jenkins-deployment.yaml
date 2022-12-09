@@ -1,0 +1,44 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: project-jenkins
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: project-jenkins
+  namespace: project-jenkins
+  labels:
+    app: dev
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: dev
+  template:
+    metadata:
+      name: project-jenkins-pod
+      labels:
+        app: dev
+    spec:
+      containers:
+      - name: project-jenkins-container
+        image: alokeacr.azurecr.io/alokeacr/acr-pipeline-job:13
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: project-jenkins-service
+  namespace: project-jenkins
+  labels:
+    service: project-jenkins-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: dev
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
