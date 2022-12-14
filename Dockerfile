@@ -4,4 +4,4 @@ RUN apt-get update
 RUN apt-get install -y python3
 ADD index.py /src/index.py
 CMD ["/src/index.py"]
-ENTRYPOINT ["python"]
+ENTRYPOINT ["python3"]
