@@ -1,4 +1,4 @@
- import streamlit as st
+import streamlit as st
 
 st.title("Hello Streamlit")
 st.header("Calculate % Growth")
