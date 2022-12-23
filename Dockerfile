@@ -1,6 +1,5 @@
 FROM python:3.8
 RUN useradd app
-USER app
 ENV MICRO_SERVICE=/home/app/webapp
 # set work directory
 RUN mkdir -p $MICRO_SERVICE
